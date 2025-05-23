@@ -26,7 +26,6 @@ canvas = np.zeros((720, 1280, 3), dtype=np.uint8)
 cap = cv2.VideoCapture(0)
 cap.set(3, 1280)  # Width
 cap.set(4, 720)   # Height
-
 xp, yp = 0, 0  # Previous points
 prev_time = 0
 
@@ -44,7 +43,7 @@ while True:
         x1, x2 = i * 160, (i + 1) * 160
         cv2.rectangle(frame, (x1, 0), (x2, 100), color, cv2.FILLED)
         if color == (0, 0, 0):
-            cv2.putText(frame, "Eraser", (x1 + 30, 60), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255), 3)
+            cv2.putText(frame, "Eraser", (x1 + 30, 60), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 3)
 
     if results.multi_hand_landmarks:
         for hand_landmarks in results.multi_hand_landmarks:
@@ -53,7 +52,6 @@ while True:
                 h, w, _ = frame.shape
                 cx, cy = int(lm.x * w), int(lm.y * h)
                 lm_list.append((cx, cy))
-
             mp_draw.draw_landmarks(frame, hand_landmarks, mp_hands.HAND_CONNECTIONS)
 
             if lm_list:
@@ -71,12 +69,13 @@ while True:
                 # --- Clear canvas ---
                 if fingers == [1, 1, 1, 1, 1]:
                     canvas = np.zeros((720, 1280, 3), dtype=np.uint8)
-                    cv2.putText(frame, "Canvas Cleared", (450, 400), cv2.FONT_HERSHEY_SIMPLEX, 2, (0,0,255), 5)
+                    cv2.putText(frame, "Canvas Cleared", (450, 400), cv2.FONT_HERSHEY_SIMPLEX, 2, (0, 0, 255), 5)
 
                 # --- Change brush type ---
                 elif fingers == [1, 1, 1, 0, 0]:
                     brush_type_index = (brush_type_index + 1) % len(brush_types)
-                    cv2.putText(frame, f"Brush: {brush_types[brush_type_index]}", (900, 130), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255), 3)
+                    cv2.putText(frame, f"Brush: {brush_types[brush_type_index]}", (900, 130),
+                                cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 3)
                     time.sleep(0.5)  # prevent rapid toggling
 
                 # --- Color Selection Mode (2 fingers) ---
@@ -119,11 +118,10 @@ while True:
     curr_time = time.time()
     fps = int(1 / (curr_time - prev_time)) if (curr_time - prev_time) != 0 else 0
     prev_time = curr_time
-    cv2.putText(frame, f'FPS: {fps}', (10, 700), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255), 2)
-    cv2.putText(frame, f'Brush: {brush_types[brush_type_index]}', (10, 650), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,255,255), 2)
+    cv2.putText(frame, f'FPS: {fps}', (10, 700), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+    cv2.putText(frame, f'Brush: {brush_types[brush_type_index]}', (10, 650), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
 
     cv2.imshow("Virtual Painter", frame)
-
     key = cv2.waitKey(1)
     if key & 0xFF == ord('q'):
         break
