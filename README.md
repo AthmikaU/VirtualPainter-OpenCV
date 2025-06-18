@@ -33,7 +33,7 @@ A Python-based virtual painting app that uses your **hand gestures** (tracked by
 1. **Clone this repository**
 
 ```bash
-git clone https://github.com/evitabarboza/Virtual-Painter-Using-Hand-Tracking
+git clone https://github.com/AthmikaU/Virtual-Painter-Using-Hand-Tracking
 .git
 cd Virtual-Painter-Using-Hand-Tracking
 ```
@@ -132,8 +132,8 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## 🙋‍♀️ Author
 
-**Evita Barboza**
+**Athmika U**
 
-Feel free to reach out at `evitabarboza195@gmail.com`.
+Feel free to reach out at `athmikaubhat@gmail.com`.
 
 
